@@ -10,8 +10,10 @@ import datetime
 def linear_fit(x, a, b):
     return a * x + b
 
+GRIT = 0
+
 # Ingest background reference image
-img_background = cv2.imread('phys_2210_photos/150_grit/150_background.png', cv2.IMREAD_UNCHANGED)
+img_background = cv2.imread('phys_2210_photos/' + str(GRIT) + '_grit/' + str(GRIT) + '_background.png', cv2.IMREAD_UNCHANGED)
 img_background = cv2.cvtColor(img_background, cv2.COLOR_BGR2GRAY)
 background_avg_un_normalized = np.mean(img_background)
 
@@ -22,7 +24,7 @@ grit_slopes = []
 grit_intercepts = []
 
 # Directory information
-GRIT_DIR = Path(r"phys_2210_photos/150_grit").expanduser().resolve()
+GRIT_DIR = Path(r"phys_2210_photos/" + str(GRIT) + "_grit").expanduser().resolve()
 NAME_PATTERN = re.compile(r"^IMG_\d{4}\.png$", re.IGNORECASE)
 
 for file in sorted(GRIT_DIR.iterdir()):
@@ -107,9 +109,9 @@ existing_intercepts_average = np.mean(grit_intercepts)
 plt.figure(figsize=(10, 6))
 plt.bar(average_grit_bin_centers, average_grit_bin_values, width=bin_edges[1] - bin_edges[0], color='red', alpha=0.7, edgecolor='black')
 plt.errorbar(average_grit_bin_centers, average_grit_bin_values, yerr=std_grit_bin_values, fmt='none', ecolor='black', capsize=5, label='Standard Deviation')
-plt.plot(average_grit_bin_centers, 10**(linear_fit(average_grit_bin_centers, *grit_params)), color='blue', label='Approach #1: Recalculate')
-plt.plot(average_grit_bin_centers, 10**(linear_fit(average_grit_bin_centers, *(existing_slopes_average, existing_intercepts_average))), color='yellow', linestyle='--', label='Approach #2: Average existing')
-plt.title("Laser Speckle Intensity Distribution")
+plt.plot(average_grit_bin_centers, 10**(linear_fit(average_grit_bin_centers, *grit_params)), color='blue', label=f'Exponential fit (slope={extracted_grit_slope:.3f}, intercept={extracted_grit_intercept:.3f})')
+#plt.plot(average_grit_bin_centers, 10**(linear_fit(average_grit_bin_centers, *(existing_slopes_average, existing_intercepts_average))), color='yellow', linestyle='--', label='Approach #2: Average existing')
+plt.title("Laser Speckle Intensity Distribution: " + str(GRIT) + " Grit")
 plt.xlabel("Intensity (arbitrary units, normalized against sensor)")
 plt.ylabel("Count")
 plt.xlim(0, 1)
