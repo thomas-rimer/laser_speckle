@@ -7,7 +7,7 @@ from pathlib import Path
 import re
 import datetime
 
-ROUND = 2
+ROUND = 4
 
 def linear_fit(x, a, b):
     return a * x + b
@@ -153,7 +153,7 @@ plt.ylabel('Slope (arbitrary units)')
 plt.grid()
 plt.xticks([150, 180, 240, 320, 400, 600, 800, 1000, 1500, 2500, 3000], ['150', '', '240', '320', '400', '600', '800', '1000', '1500', '2500', '3000'], rotation=90)
 # plot uncertainty
-plt.errorbar(list_of_grits[1:], (all_slopes[1:], yerr=slope_uncertainties[1:], fmt='o', color='black', capsize=5)
+plt.errorbar(list_of_grits[1:], (-1)*np.array(all_slopes[1:]), yerr=slope_uncertainties[1:], fmt='o', color='black', capsize=5)
 
 timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
 output_dir = "outputs/round_" + str(ROUND)

@@ -38,13 +38,13 @@ for f_element in f_k_conjugate[0]:
 plt.figure(figsize=(12, 6))
 
 plt.subplot(2, 1, 1)
-plt.plot(f_k_conjugate[0].real, marker='o', label='Real Part')  # Add color='blue' to the plot
-plt.axhline(y=0, color='black', linestyle='--')  # Add horizontal tick line at y=0
+plt.plot(f_k_conjugate[0].real, marker='o', label='Real Part')
+plt.axhline(y=0, color='black', linestyle='--')
 plt.legend()
 
 plt.subplot(2, 1, 2)
 plt.plot(f_k_conjugate[0].imag, marker='o', label='Imaginary Part', color='orange')
-plt.axhline(y=0, color='black', linestyle='--')  # Add horizontal tick line at y=0
+plt.axhline(y=0, color='black', linestyle='--')
 
 plt.xlabel('Index')
 plt.ylabel('Value')
