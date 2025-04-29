@@ -159,7 +159,10 @@ The ```all_grit_analysis.py``` program expects the following file structure. ```
 ```
 
 ## Original Images
-All images used for the analysis are availible to download [here](https://drive.google.com/drive/folders/1P8QvHCOnrvAMtI43O0iG7MU9QoY2lb_M?usp=sharing). They are not included in the 
+All images used for the analysis are available to download [here](https://drive.google.com/drive/folders/1P8QvHCOnrvAMtI43O0iG7MU9QoY2lb_M?usp=sharing). They are not included in the repo due to size limitations.
 
 ## misc_programs
 The ```misc_programs``` folder contains some other programs I wrote to help with the analysis, but they are not used in the main program. They are included for completeness and may be useful for reference. You must move them to the same directory as ```all_grit_analysis.py``` to run them.
+
+## Running the Program
+When running ```all_grit_analysis.py```, you must create a new folder within ```/outputs``` titled ```round_X```. Then enter the same ```X``` value into the ```ROUND``` variable in the beginning of ```all_grit_analysis.py```. This will ensure the program does not inadvertently overwrite existing graphs from previous runs of the program. 
